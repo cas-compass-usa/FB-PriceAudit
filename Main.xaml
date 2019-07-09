@@ -72,7 +72,7 @@
           <av:Size x:Key="ShapeSize">200,51</av:Size>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <Sequence DisplayName="Process Files" sap:VirtualizedContainerService.HintSize="599,4200" sap2010:WorkflowViewState.IdRef="Sequence_4">
+      <Sequence DisplayName="Process Files" sap:VirtualizedContainerService.HintSize="557,4243" sap2010:WorkflowViewState.IdRef="Sequence_4">
         <Sequence.Variables>
           <Variable x:TypeArguments="sd:DataTable" Name="initTemplateColumnHeaders" />
           <Variable x:TypeArguments="sd:DataColumnCollection" Name="templateHeadersArray" />
@@ -84,14 +84,15 @@
           <Variable x:TypeArguments="s:String[]" Name="templateColumnHeaders" />
           <Variable x:TypeArguments="ui:GenericValue" Name="ErrorFolder" />
           <Variable x:TypeArguments="x:Boolean" Default="False" Name="nextFile" />
+          <Variable x:TypeArguments="ui:GenericValue" Name="ConsolidatedFile" />
         </Sequence.Variables>
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
-        <ui:ReadRange AddHeaders="True" DataTable="[initTemplateColumnHeaders]" DisplayName="Read Range" sap:VirtualizedContainerService.HintSize="577,87" sap2010:WorkflowViewState.IdRef="ReadRange_2" Range="1:1" SheetName="Consolidated" WorkbookPath="[Config(&quot;TemplateFile&quot;).ToString]" />
-        <Assign sap:VirtualizedContainerService.HintSize="577,60" sap2010:WorkflowViewState.IdRef="Assign_11">
+        <ui:ReadRange AddHeaders="True" DataTable="[initTemplateColumnHeaders]" DisplayName="Read Range" sap:VirtualizedContainerService.HintSize="535,87" sap2010:WorkflowViewState.IdRef="ReadRange_2" Range="1:1" SheetName="Consolidated" WorkbookPath="[Config(&quot;TemplateFile&quot;).ToString]" />
+        <Assign sap:VirtualizedContainerService.HintSize="535,60" sap2010:WorkflowViewState.IdRef="Assign_11">
           <Assign.To>
             <OutArgument x:TypeArguments="x:Int32">[count]</OutArgument>
           </Assign.To>
@@ -99,7 +100,7 @@
             <InArgument x:TypeArguments="x:Int32">0</InArgument>
           </Assign.Value>
         </Assign>
-        <Assign sap:VirtualizedContainerService.HintSize="577,60" sap2010:WorkflowViewState.IdRef="Assign_12">
+        <Assign sap:VirtualizedContainerService.HintSize="535,60" sap2010:WorkflowViewState.IdRef="Assign_12">
           <Assign.To>
             <OutArgument x:TypeArguments="sd:DataColumnCollection">[templateHeadersArray]</OutArgument>
           </Assign.To>
@@ -107,7 +108,7 @@
             <InArgument x:TypeArguments="sd:DataColumnCollection">[initTemplateColumnHeaders.Columns]</InArgument>
           </Assign.Value>
         </Assign>
-        <While sap:VirtualizedContainerService.HintSize="577,366" sap2010:WorkflowViewState.IdRef="While_1">
+        <While sap:VirtualizedContainerService.HintSize="535,366" sap2010:WorkflowViewState.IdRef="While_1">
           <While.Variables>
             <Variable x:TypeArguments="x:Boolean" Default="False" Name="blankColumn" />
           </While.Variables>
@@ -135,7 +136,7 @@
             </If.Else>
           </If>
         </While>
-        <Assign sap:VirtualizedContainerService.HintSize="577,60" sap2010:WorkflowViewState.IdRef="Assign_19">
+        <Assign sap:VirtualizedContainerService.HintSize="535,60" sap2010:WorkflowViewState.IdRef="Assign_19">
           <Assign.To>
             <OutArgument x:TypeArguments="s:String[]">[templateColumnHeaders]</OutArgument>
           </Assign.To>
@@ -143,7 +144,7 @@
             <InArgument x:TypeArguments="s:String[]">[new String(count - 1) {}]</InArgument>
           </Assign.Value>
         </Assign>
-        <Assign sap:VirtualizedContainerService.HintSize="577,60" sap2010:WorkflowViewState.IdRef="Assign_20">
+        <Assign sap:VirtualizedContainerService.HintSize="535,60" sap2010:WorkflowViewState.IdRef="Assign_20">
           <Assign.To>
             <OutArgument x:TypeArguments="x:Int32">[count]</OutArgument>
           </Assign.To>
@@ -151,7 +152,7 @@
             <InArgument x:TypeArguments="x:Int32">0</InArgument>
           </Assign.Value>
         </Assign>
-        <ui:ForEach x:TypeArguments="sd:DataColumn" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="577,690" sap2010:WorkflowViewState.IdRef="ForEach`1_6" Values="[templateHeadersArray]">
+        <ui:ForEach x:TypeArguments="sd:DataColumn" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="535,690" sap2010:WorkflowViewState.IdRef="ForEach`1_6" Values="[templateHeadersArray]">
           <ui:ForEach.Body>
             <ActivityAction x:TypeArguments="sd:DataColumn">
               <ActivityAction.Argument>
@@ -197,7 +198,7 @@
             </ActivityAction>
           </ui:ForEach.Body>
         </ui:ForEach>
-        <Assign DisplayName="Assign operating file path" sap:VirtualizedContainerService.HintSize="577,60" sap2010:WorkflowViewState.IdRef="Assign_8">
+        <Assign DisplayName="Assign operating file path" sap:VirtualizedContainerService.HintSize="535,60" sap2010:WorkflowViewState.IdRef="Assign_8">
           <Assign.To>
             <OutArgument x:TypeArguments="ui:GenericValue">[PriceAuditFolder]</OutArgument>
           </Assign.To>
@@ -205,7 +206,15 @@
             <InArgument x:TypeArguments="ui:GenericValue">[Config("PriceAuditFolder").ToString]</InArgument>
           </Assign.Value>
         </Assign>
-        <Assign DisplayName="Assign post-processed file path" sap:VirtualizedContainerService.HintSize="577,60" sap2010:WorkflowViewState.IdRef="Assign_9">
+        <Assign sap:VirtualizedContainerService.HintSize="535,60" sap2010:WorkflowViewState.IdRef="Assign_31">
+          <Assign.To>
+            <OutArgument x:TypeArguments="ui:GenericValue">[ConsolidatedFile]</OutArgument>
+          </Assign.To>
+          <Assign.Value>
+            <InArgument x:TypeArguments="ui:GenericValue">[Config("ConsolidatedFile").ToString]</InArgument>
+          </Assign.Value>
+        </Assign>
+        <Assign DisplayName="Assign post-processed file path" sap:VirtualizedContainerService.HintSize="535,60" sap2010:WorkflowViewState.IdRef="Assign_9">
           <Assign.To>
             <OutArgument x:TypeArguments="ui:GenericValue">[ProcessedFolder]</OutArgument>
           </Assign.To>
@@ -213,7 +222,7 @@
             <InArgument x:TypeArguments="ui:GenericValue">[Config("ProcessedFolder").ToString]</InArgument>
           </Assign.Value>
         </Assign>
-        <Assign sap:VirtualizedContainerService.HintSize="577,60" sap2010:WorkflowViewState.IdRef="Assign_25">
+        <Assign sap:VirtualizedContainerService.HintSize="535,60" sap2010:WorkflowViewState.IdRef="Assign_25">
           <Assign.To>
             <OutArgument x:TypeArguments="ui:GenericValue">[ErrorFolder]</OutArgument>
           </Assign.To>
@@ -221,7 +230,7 @@
             <InArgument x:TypeArguments="ui:GenericValue">[Config("ErrorFolder").ToString]</InArgument>
           </Assign.Value>
         </Assign>
-        <ui:CommentOut sap2010:Annotation.AnnotationText="Enable to activate Orchestrator connectivity." DisplayName="Disabled Orchestrator connectivity" sap:VirtualizedContainerService.HintSize="577,93" sap2010:WorkflowViewState.IdRef="CommentOut_2">
+        <ui:CommentOut sap2010:Annotation.AnnotationText="Enable to activate Orchestrator connectivity." DisplayName="Disabled Orchestrator connectivity" sap:VirtualizedContainerService.HintSize="535,93" sap2010:WorkflowViewState.IdRef="CommentOut_2">
           <ui:CommentOut.Body>
             <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="222,208" sap2010:WorkflowViewState.IdRef="Sequence_13">
               <sap:WorkflowViewStateService.ViewState>
@@ -250,7 +259,7 @@
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
         </ui:CommentOut>
-        <Assign sap:VirtualizedContainerService.HintSize="577,60" sap2010:WorkflowViewState.IdRef="Assign_21">
+        <Assign sap:VirtualizedContainerService.HintSize="535,60" sap2010:WorkflowViewState.IdRef="Assign_21">
           <Assign.To>
             <OutArgument x:TypeArguments="sd:DataTable">[initTemplateColumnHeaders]</OutArgument>
           </Assign.To>
@@ -258,7 +267,7 @@
             <InArgument x:TypeArguments="sd:DataTable">[new DataTable()]</InArgument>
           </Assign.Value>
         </Assign>
-        <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="577,194" sap2010:WorkflowViewState.IdRef="ForEach`1_7" Values="[templateColumnHeaders]">
+        <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="535,194" sap2010:WorkflowViewState.IdRef="ForEach`1_7" Values="[templateColumnHeaders]">
           <ui:ForEach.Body>
             <ActivityAction x:TypeArguments="x:String">
               <ActivityAction.Argument>
@@ -268,7 +277,7 @@
             </ActivityAction>
           </ui:ForEach.Body>
         </ui:ForEach>
-        <Assign sap:VirtualizedContainerService.HintSize="577,60" sap2010:WorkflowViewState.IdRef="Assign_22">
+        <Assign sap:VirtualizedContainerService.HintSize="535,60" sap2010:WorkflowViewState.IdRef="Assign_22">
           <Assign.To>
             <OutArgument x:TypeArguments="sd:DataColumnCollection">[templateHeadersArray]</OutArgument>
           </Assign.To>
@@ -276,7 +285,7 @@
             <InArgument x:TypeArguments="sd:DataColumnCollection">[initTemplateColumnHeaders.Columns]</InArgument>
           </Assign.Value>
         </Assign>
-        <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Add headers to consolidated file" sap:VirtualizedContainerService.HintSize="577,196" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_3" Visible="False" WorkbookPath="Data\ConsolidatedPriceAudit.xlsx">
+        <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Add headers to consolidated file" sap:VirtualizedContainerService.HintSize="535,196" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_3" Visible="False" WorkbookPath="Data\ConsolidatedPriceAudit.xlsx">
           <ui:ExcelApplicationScope.Body>
             <ActivityAction x:TypeArguments="ui:WorkbookApplication">
               <ActivityAction.Argument>
@@ -286,21 +295,21 @@
             </ActivityAction>
           </ui:ExcelApplicationScope.Body>
         </ui:ExcelApplicationScope>
-        <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each Price Audit File" sap:VirtualizedContainerService.HintSize="577,950" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[Directory.GetFiles(PriceAuditFolder)]">
+        <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each Price Audit File" sap:VirtualizedContainerService.HintSize="535,762" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[Directory.GetFiles(PriceAuditFolder)]">
           <ui:ForEach.Body>
             <ActivityAction x:TypeArguments="x:String">
               <ActivityAction.Argument>
                 <DelegateInArgument x:TypeArguments="x:String" Name="file" />
               </ActivityAction.Argument>
-              <Sequence DisplayName="Read spreadsheet and get rows" sap:VirtualizedContainerService.HintSize="561,816" sap2010:WorkflowViewState.IdRef="Sequence_3">
+              <Sequence DisplayName="Read spreadsheet and get rows" sap:VirtualizedContainerService.HintSize="436,628" sap2010:WorkflowViewState.IdRef="Sequence_3">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     <x:Boolean x:Key="IsPinned">False</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
-                <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="539,91" sap2010:WorkflowViewState.IdRef="LogMessage_5" Level="Info" Message="[&quot;Currently processing file: &quot; + file.Split(&quot;\&quot;.ToCharArray).Last]" />
-                <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="539,282" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+                <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="414,91" sap2010:WorkflowViewState.IdRef="LogMessage_5" Level="Info" Message="[&quot;Currently processing file: &quot; + file.Split(&quot;\&quot;.ToCharArray).Last]" />
+                <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="414,282" sap2010:WorkflowViewState.IdRef="TryCatch_1">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -358,12 +367,18 @@
                     </Catch>
                   </TryCatch.Catches>
                 </TryCatch>
-                <If Condition="[Not nextFile]" sap:VirtualizedContainerService.HintSize="539,239" sap2010:WorkflowViewState.IdRef="If_5">
+                <If Condition="[Not nextFile]" sap:VirtualizedContainerService.HintSize="414,51" sap2010:WorkflowViewState.IdRef="If_5">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
                   <If.Then>
-                    <Sequence DisplayName="Process rows to add" sap:VirtualizedContainerService.HintSize="200,51" sap2010:WorkflowViewState.IdRef="Sequence_24">
+                    <Sequence DisplayName="Process rows to add" sap:VirtualizedContainerService.HintSize="486,1133" sap2010:WorkflowViewState.IdRef="Sequence_24">
                       <sap:WorkflowViewStateService.ViewState>
                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                           <x:Boolean x:Key="IsPinned">False</x:Boolean>
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
@@ -467,18 +482,19 @@
             </ActivityAction>
           </ui:ForEach.Body>
         </ui:ForEach>
-        <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Excel Application Scope" sap:VirtualizedContainerService.HintSize="577,320" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_2" Visible="False" WorkbookPath="Data\ConsolidatedPriceAudit.xlsx">
+        <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Excel Application Scope" sap:VirtualizedContainerService.HintSize="535,451" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_2" Visible="False" WorkbookPath="[ConsolidatedFile]">
           <ui:ExcelApplicationScope.Body>
             <ActivityAction x:TypeArguments="ui:WorkbookApplication">
               <ActivityAction.Argument>
                 <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
               </ActivityAction.Argument>
-              <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="336,211" sap2010:WorkflowViewState.IdRef="Sequence_6">
+              <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="336,342" sap2010:WorkflowViewState.IdRef="Sequence_6">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
+                <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="314,91" sap2010:WorkflowViewState.IdRef="LogMessage_13" Level="Info" Message="[&quot;Adding rows to consolidated file...&quot;]" />
                 <ui:ExcelAppendRange DataTable="[initTemplateColumnHeaders]" DisplayName="Append Range" sap:VirtualizedContainerService.HintSize="314,87" sap2010:WorkflowViewState.IdRef="ExcelAppendRange_1" SheetName="Consolidated" />
               </Sequence>
             </ActivityAction>
