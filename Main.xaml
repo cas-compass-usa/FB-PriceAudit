@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Main" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="654,792" sap2010:WorkflowViewState.IdRef="ActivityBuilder_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Main" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="670,792" sap2010:WorkflowViewState.IdRef="ActivityBuilder_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="22">
       <x:String>System.Activities</x:String>
@@ -49,7 +49,7 @@
       <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Flowchart DisplayName="FB_PriceAudit" sap:VirtualizedContainerService.HintSize="614,672" sap2010:WorkflowViewState.IdRef="Flowchart_1">
+  <Flowchart DisplayName="FB_PriceAudit" sap:VirtualizedContainerService.HintSize="630,672" sap2010:WorkflowViewState.IdRef="Flowchart_1">
     <Flowchart.Variables>
       <Variable x:TypeArguments="scg:Dictionary(x:String, x:Object)" Name="Config" />
     </Flowchart.Variables>
@@ -58,7 +58,7 @@
         <x:Boolean x:Key="IsExpanded">False</x:Boolean>
         <av:Point x:Key="ShapeLocation">20,12.5</av:Point>
         <av:Size x:Key="ShapeSize">60,75</av:Size>
-        <av:PointCollection x:Key="ConnectorLocation">80,50 110,50 110,0 220,0 220,6</av:PointCollection>
+        <av:PointCollection x:Key="ConnectorLocation">80,50 110,50 110,0 228,0 228,6</av:PointCollection>
         <x:Double x:Key="Height">635.5</x:Double>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
@@ -69,10 +69,10 @@
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <av:Point x:Key="ShapeLocation">370,124.5</av:Point>
-          <av:Size x:Key="ShapeSize">200,51</av:Size>
+          <av:Size x:Key="ShapeSize">216,66</av:Size>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <Sequence DisplayName="Process Files" sap:VirtualizedContainerService.HintSize="1598,10144" sap2010:WorkflowViewState.IdRef="Sequence_4">
+      <Sequence DisplayName="Process Files" sap:VirtualizedContainerService.HintSize="1646,9426" sap2010:WorkflowViewState.IdRef="Sequence_4">
         <Sequence.Variables>
           <Variable x:TypeArguments="sd:DataTable" Name="initTemplateColumnHeaders" />
           <Variable x:TypeArguments="sd:DataColumnCollection" Name="templateHeadersArray" />
@@ -93,14 +93,23 @@
           <Variable x:TypeArguments="x:Boolean" Name="consolidatedFileExists" />
           <Variable x:TypeArguments="ui:GenericValue" Name="Macros" />
           <Variable x:TypeArguments="x:Boolean" Name="faultyFileExists" />
+          <Variable x:TypeArguments="ui:GenericValue" Name="TemplateFile" />
         </Sequence.Variables>
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
-        <ui:ReadRange AddHeaders="True" DataTable="[initTemplateColumnHeaders]" DisplayName="Read template headers" sap:VirtualizedContainerService.HintSize="1576,87" sap2010:WorkflowViewState.IdRef="ReadRange_2" Range="1:1" SheetName="Consolidated" WorkbookPath="[Config(&quot;TemplateFile&quot;).ToString]" />
-        <Assign sap:VirtualizedContainerService.HintSize="1576,60" sap2010:WorkflowViewState.IdRef="Assign_11">
+        <Assign sap:VirtualizedContainerService.HintSize="1608,60" sap2010:WorkflowViewState.IdRef="Assign_95">
+          <Assign.To>
+            <OutArgument x:TypeArguments="ui:GenericValue">[TemplateFile]</OutArgument>
+          </Assign.To>
+          <Assign.Value>
+            <InArgument x:TypeArguments="ui:GenericValue">[Config("TemplateFile").ToString]</InArgument>
+          </Assign.Value>
+        </Assign>
+        <ui:ReadRange AddHeaders="True" DataTable="[initTemplateColumnHeaders]" DisplayName="Read template headers" sap:VirtualizedContainerService.HintSize="1608,87" sap2010:WorkflowViewState.IdRef="ReadRange_2" Range="1:1" SheetName="Consolidated" WorkbookPath="[TemplateFile]" />
+        <Assign sap:VirtualizedContainerService.HintSize="1608,60" sap2010:WorkflowViewState.IdRef="Assign_11">
           <Assign.To>
             <OutArgument x:TypeArguments="x:Int32">[count]</OutArgument>
           </Assign.To>
@@ -108,7 +117,7 @@
             <InArgument x:TypeArguments="x:Int32">0</InArgument>
           </Assign.Value>
         </Assign>
-        <Assign DisplayName="Assign headers array" sap:VirtualizedContainerService.HintSize="1576,60" sap2010:WorkflowViewState.IdRef="Assign_12">
+        <Assign DisplayName="Assign headers array" sap:VirtualizedContainerService.HintSize="1608,60" sap2010:WorkflowViewState.IdRef="Assign_12">
           <Assign.To>
             <OutArgument x:TypeArguments="sd:DataColumnCollection">[templateHeadersArray]</OutArgument>
           </Assign.To>
@@ -116,7 +125,7 @@
             <InArgument x:TypeArguments="sd:DataColumnCollection">[initTemplateColumnHeaders.Columns]</InArgument>
           </Assign.Value>
         </Assign>
-        <While DisplayName="While not blank column set column count" sap:VirtualizedContainerService.HintSize="1576,51" sap2010:WorkflowViewState.IdRef="While_1">
+        <While DisplayName="While not blank column set column count" sap:VirtualizedContainerService.HintSize="1608,51" sap2010:WorkflowViewState.IdRef="While_1">
           <While.Variables>
             <Variable x:TypeArguments="x:Boolean" Default="False" Name="blankColumn" />
           </While.Variables>
@@ -150,7 +159,7 @@
             </If.Else>
           </If>
         </While>
-        <Assign DisplayName="Init array size" sap:VirtualizedContainerService.HintSize="1576,60" sap2010:WorkflowViewState.IdRef="Assign_19">
+        <Assign DisplayName="Init array size" sap:VirtualizedContainerService.HintSize="1608,60" sap2010:WorkflowViewState.IdRef="Assign_19">
           <Assign.To>
             <OutArgument x:TypeArguments="s:String[]">[templateColumnHeaders]</OutArgument>
           </Assign.To>
@@ -158,7 +167,7 @@
             <InArgument x:TypeArguments="s:String[]">[new String(count - 1) {}]</InArgument>
           </Assign.Value>
         </Assign>
-        <Assign sap:VirtualizedContainerService.HintSize="1576,60" sap2010:WorkflowViewState.IdRef="Assign_20">
+        <Assign sap:VirtualizedContainerService.HintSize="1608,60" sap2010:WorkflowViewState.IdRef="Assign_20">
           <Assign.To>
             <OutArgument x:TypeArguments="x:Int32">[count]</OutArgument>
           </Assign.To>
@@ -166,7 +175,7 @@
             <InArgument x:TypeArguments="x:Int32">0</InArgument>
           </Assign.Value>
         </Assign>
-        <ui:ForEach x:TypeArguments="sd:DataColumn" CurrentIndex="{x:Null}" DisplayName="Add column names to array" sap:VirtualizedContainerService.HintSize="1576,51" sap2010:WorkflowViewState.IdRef="ForEach`1_6" Values="[templateHeadersArray]">
+        <ui:ForEach x:TypeArguments="sd:DataColumn" CurrentIndex="{x:Null}" DisplayName="Add column names to array" sap:VirtualizedContainerService.HintSize="1608,51" sap2010:WorkflowViewState.IdRef="ForEach`1_6" Values="[templateHeadersArray]">
           <ui:ForEach.Body>
             <ActivityAction x:TypeArguments="sd:DataColumn">
               <ActivityAction.Argument>
@@ -218,7 +227,7 @@
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
         </ui:ForEach>
-        <Assign DisplayName="Assign operating file path" sap:VirtualizedContainerService.HintSize="1576,60" sap2010:WorkflowViewState.IdRef="Assign_8">
+        <Assign DisplayName="Assign operating file path" sap:VirtualizedContainerService.HintSize="1608,60" sap2010:WorkflowViewState.IdRef="Assign_8">
           <Assign.To>
             <OutArgument x:TypeArguments="ui:GenericValue">[PriceAuditFolder]</OutArgument>
           </Assign.To>
@@ -252,7 +261,7 @@
         </Assign>
         <ui:PathExists DisplayName="Check ConsolidatedFile already exists?" Exists="[consolidatedFileExists]" sap:VirtualizedContainerService.HintSize="1576,89" sap2010:WorkflowViewState.IdRef="PathExists_1" Path="[ConsolidatedFile]" PathType="File" />
         <ui:PathExists DisplayName="Check FaultyRowsFile already exists?" Exists="[faultyFileExists]" sap:VirtualizedContainerService.HintSize="1576,89" sap2010:WorkflowViewState.IdRef="PathExists_2" Path="[FaultyRowsFile]" PathType="File" />
-        <If Condition="[consolidatedFileExists]" DisplayName="If ConsolidatedFile already exists then delete" sap:VirtualizedContainerService.HintSize="1576,208" sap2010:WorkflowViewState.IdRef="If_11">
+        <If Condition="[consolidatedFileExists]" DisplayName="If ConsolidatedFile already exists then delete" sap:VirtualizedContainerService.HintSize="1608,208" sap2010:WorkflowViewState.IdRef="If_11">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -260,10 +269,10 @@
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
           <If.Then>
-            <ui:Delete ContinueOnError="{x:Null}" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="Delete_1" Path="[ConsolidatedFile]" />
+            <ui:Delete ContinueOnError="{x:Null}" sap:VirtualizedContainerService.HintSize="216,22" sap2010:WorkflowViewState.IdRef="Delete_1" Path="[ConsolidatedFile]" />
           </If.Then>
         </If>
-        <If Condition="[faultyFileExists]" DisplayName="If FaultyRowsFile already exists then delete" sap:VirtualizedContainerService.HintSize="1576,208" sap2010:WorkflowViewState.IdRef="If_18">
+        <If Condition="[faultyFileExists]" DisplayName="If FaultyRowsFile already exists then delete" sap:VirtualizedContainerService.HintSize="1608,208" sap2010:WorkflowViewState.IdRef="If_18">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -271,10 +280,10 @@
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
           <If.Then>
-            <ui:Delete ContinueOnError="{x:Null}" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="Delete_2" Path="[FaultyRowsFile]" />
+            <ui:Delete ContinueOnError="{x:Null}" sap:VirtualizedContainerService.HintSize="216,22" sap2010:WorkflowViewState.IdRef="Delete_2" Path="[FaultyRowsFile]" />
           </If.Then>
         </If>
-        <Assign DisplayName="Assign post-processed file path" sap:VirtualizedContainerService.HintSize="1576,60" sap2010:WorkflowViewState.IdRef="Assign_9">
+        <Assign DisplayName="Assign post-processed file path" sap:VirtualizedContainerService.HintSize="1608,60" sap2010:WorkflowViewState.IdRef="Assign_9">
           <Assign.To>
             <OutArgument x:TypeArguments="ui:GenericValue">[ProcessedFolder]</OutArgument>
           </Assign.To>
@@ -282,7 +291,7 @@
             <InArgument x:TypeArguments="ui:GenericValue">[Config("ProcessedFolder").ToString]</InArgument>
           </Assign.Value>
         </Assign>
-        <Assign DisplayName="Assign error folder file path" sap:VirtualizedContainerService.HintSize="1576,60" sap2010:WorkflowViewState.IdRef="Assign_25">
+        <Assign DisplayName="Assign error folder file path" sap:VirtualizedContainerService.HintSize="1608,60" sap2010:WorkflowViewState.IdRef="Assign_25">
           <Assign.To>
             <OutArgument x:TypeArguments="ui:GenericValue">[ErrorFolder]</OutArgument>
           </Assign.To>
@@ -290,21 +299,21 @@
             <InArgument x:TypeArguments="ui:GenericValue">[Config("ErrorFolder").ToString]</InArgument>
           </Assign.Value>
         </Assign>
-        <ui:CommentOut sap2010:Annotation.AnnotationText="Enable to activate Orchestrator connectivity." DisplayName="Disabled Orchestrator connectivity" sap:VirtualizedContainerService.HintSize="1576,93" sap2010:WorkflowViewState.IdRef="CommentOut_2">
+        <ui:CommentOut sap2010:Annotation.AnnotationText="Enable to activate Orchestrator connectivity." DisplayName="Disabled Orchestrator connectivity" sap:VirtualizedContainerService.HintSize="1608,93" sap2010:WorkflowViewState.IdRef="CommentOut_2">
           <ui:CommentOut.Body>
-            <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="222,208" sap2010:WorkflowViewState.IdRef="Sequence_13">
+            <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="254,176" sap2010:WorkflowViewState.IdRef="Sequence_13">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                   <x:Boolean x:Key="IsPinned">False</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="[Config(&quot;PriceAuditFolder&quot;).ToString]" DisplayName="File path to be processed" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="GetRobotAsset_2">
+              <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="[Config(&quot;PriceAuditFolder&quot;).ToString]" DisplayName="File path to be processed" sap:VirtualizedContainerService.HintSize="216,22" sap2010:WorkflowViewState.IdRef="GetRobotAsset_2">
                 <ui:GetRobotAsset.Value>
                   <OutArgument x:TypeArguments="ui:GenericValue">[PriceAuditFolder]</OutArgument>
                 </ui:GetRobotAsset.Value>
               </ui:GetRobotAsset>
-              <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="[Config(&quot;ProcessedFolder&quot;).ToString]" DisplayName="Processed file path" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="GetRobotAsset_3">
+              <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="[Config(&quot;ProcessedFolder&quot;).ToString]" DisplayName="Processed file path" sap:VirtualizedContainerService.HintSize="216,22" sap2010:WorkflowViewState.IdRef="GetRobotAsset_3">
                 <ui:GetRobotAsset.Value>
                   <OutArgument x:TypeArguments="ui:GenericValue">[ProcessedFolder]</OutArgument>
                 </ui:GetRobotAsset.Value>
@@ -319,7 +328,7 @@
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
         </ui:CommentOut>
-        <Assign sap:VirtualizedContainerService.HintSize="1576,60" sap2010:WorkflowViewState.IdRef="Assign_21">
+        <Assign sap:VirtualizedContainerService.HintSize="1608,60" sap2010:WorkflowViewState.IdRef="Assign_21">
           <Assign.To>
             <OutArgument x:TypeArguments="sd:DataTable">[initTemplateColumnHeaders]</OutArgument>
           </Assign.To>
@@ -327,7 +336,7 @@
             <InArgument x:TypeArguments="sd:DataTable">[new DataTable()]</InArgument>
           </Assign.Value>
         </Assign>
-        <Assign sap:VirtualizedContainerService.HintSize="1576,60" sap2010:WorkflowViewState.IdRef="Assign_40">
+        <Assign sap:VirtualizedContainerService.HintSize="1608,60" sap2010:WorkflowViewState.IdRef="Assign_40">
           <Assign.To>
             <OutArgument x:TypeArguments="sd:DataTable">[faultyRowsDT]</OutArgument>
           </Assign.To>
@@ -335,7 +344,7 @@
             <InArgument x:TypeArguments="sd:DataTable">[new DataTable()]</InArgument>
           </Assign.Value>
         </Assign>
-        <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="1576,194" sap2010:WorkflowViewState.IdRef="ForEach`1_7" Values="[templateColumnHeaders]">
+        <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="1608,194" sap2010:WorkflowViewState.IdRef="ForEach`1_7" Values="[templateColumnHeaders]">
           <ui:ForEach.Body>
             <ActivityAction x:TypeArguments="x:String">
               <ActivityAction.Argument>
@@ -345,9 +354,9 @@
             </ActivityAction>
           </ui:ForEach.Body>
         </ui:ForEach>
-        <ui:AddDataColumn x:TypeArguments="x:Object" Column="{x:Null}" DefaultValue="{x:Null}" AllowDBNull="True" AutoIncrement="False" ColumnName="File" DataTable="[faultyRowsDT]" DisplayName="Add Data Column" sap:VirtualizedContainerService.HintSize="1576,22" sap2010:WorkflowViewState.IdRef="AddDataColumn`1_4" MaxLength="100" Unique="False" />
-        <ui:AddDataColumn x:TypeArguments="x:Object" Column="{x:Null}" DefaultValue="{x:Null}" AllowDBNull="True" AutoIncrement="False" ColumnName="Origin file row #" DataTable="[faultyRowsDT]" DisplayName="Add Data Column" sap:VirtualizedContainerService.HintSize="1576,22" sap2010:WorkflowViewState.IdRef="AddDataColumn`1_5" MaxLength="100" Unique="False" />
-        <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="1576,194" sap2010:WorkflowViewState.IdRef="ForEach`1_9" Values="[templateColumnHeaders]">
+        <ui:AddDataColumn x:TypeArguments="x:Object" Column="{x:Null}" DefaultValue="{x:Null}" AllowDBNull="True" AutoIncrement="False" ColumnName="File" DataTable="[faultyRowsDT]" DisplayName="Add Data Column" sap:VirtualizedContainerService.HintSize="1608,22" sap2010:WorkflowViewState.IdRef="AddDataColumn`1_4" MaxLength="100" Unique="False" />
+        <ui:AddDataColumn x:TypeArguments="x:Object" Column="{x:Null}" DefaultValue="{x:Null}" AllowDBNull="True" AutoIncrement="False" ColumnName="Origin file row #" DataTable="[faultyRowsDT]" DisplayName="Add Data Column" sap:VirtualizedContainerService.HintSize="1608,22" sap2010:WorkflowViewState.IdRef="AddDataColumn`1_5" MaxLength="100" Unique="False" />
+        <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="1608,194" sap2010:WorkflowViewState.IdRef="ForEach`1_9" Values="[templateColumnHeaders]">
           <ui:ForEach.Body>
             <ActivityAction x:TypeArguments="x:String">
               <ActivityAction.Argument>
@@ -357,8 +366,8 @@
             </ActivityAction>
           </ui:ForEach.Body>
         </ui:ForEach>
-        <ui:AddDataColumn x:TypeArguments="x:Object" Column="{x:Null}" DefaultValue="{x:Null}" AllowDBNull="True" AutoIncrement="False" ColumnName="Missing Data" DataTable="[faultyRowsDT]" DisplayName="Add Data Column" sap:VirtualizedContainerService.HintSize="1576,22" sap2010:WorkflowViewState.IdRef="AddDataColumn`1_7" MaxLength="100" Unique="False" />
-        <Assign sap:VirtualizedContainerService.HintSize="1576,60" sap2010:WorkflowViewState.IdRef="Assign_22">
+        <ui:AddDataColumn x:TypeArguments="x:Object" Column="{x:Null}" DefaultValue="{x:Null}" AllowDBNull="True" AutoIncrement="False" ColumnName="Missing Data" DataTable="[faultyRowsDT]" DisplayName="Add Data Column" sap:VirtualizedContainerService.HintSize="1608,22" sap2010:WorkflowViewState.IdRef="AddDataColumn`1_7" MaxLength="100" Unique="False" />
+        <Assign sap:VirtualizedContainerService.HintSize="1608,60" sap2010:WorkflowViewState.IdRef="Assign_22">
           <Assign.To>
             <OutArgument x:TypeArguments="sd:DataColumnCollection">[templateHeadersArray]</OutArgument>
           </Assign.To>
@@ -366,13 +375,13 @@
             <InArgument x:TypeArguments="sd:DataColumnCollection">[initTemplateColumnHeaders.Columns]</InArgument>
           </Assign.Value>
         </Assign>
-        <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Add headers to consolidated file" sap:VirtualizedContainerService.HintSize="1576,51" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_3" Visible="False" WorkbookPath="[ConsolidatedFile]">
+        <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Add headers to consolidated file" sap:VirtualizedContainerService.HintSize="1608,51" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_3" Visible="False" WorkbookPath="[ConsolidatedFile]">
           <ui:ExcelApplicationScope.Body>
             <ActivityAction x:TypeArguments="ui:WorkbookApplication">
               <ActivityAction.Argument>
                 <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
               </ActivityAction.Argument>
-              <Sequence sap:VirtualizedContainerService.HintSize="336,211" sap2010:WorkflowViewState.IdRef="Sequence_28">
+              <Sequence sap:VirtualizedContainerService.HintSize="352,179" sap2010:WorkflowViewState.IdRef="Sequence_28">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -389,13 +398,13 @@
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
         </ui:ExcelApplicationScope>
-        <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Add headers to faulty rows file" sap:VirtualizedContainerService.HintSize="1576,320" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_5" Visible="False" WorkbookPath="[FaultyRowsFile]">
+        <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Add headers to faulty rows file" sap:VirtualizedContainerService.HintSize="1608,288" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_5" Visible="False" WorkbookPath="[FaultyRowsFile]">
           <ui:ExcelApplicationScope.Body>
             <ActivityAction x:TypeArguments="ui:WorkbookApplication">
               <ActivityAction.Argument>
                 <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
               </ActivityAction.Argument>
-              <Sequence sap:VirtualizedContainerService.HintSize="336,211" sap2010:WorkflowViewState.IdRef="Sequence_32">
+              <Sequence sap:VirtualizedContainerService.HintSize="352,179" sap2010:WorkflowViewState.IdRef="Sequence_32">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -412,13 +421,13 @@
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
         </ui:ExcelApplicationScope>
-        <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each Price Audit File" sap:VirtualizedContainerService.HintSize="1576,4950" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[Directory.GetFiles(PriceAuditFolder)]">
+        <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each Price Audit File" sap:VirtualizedContainerService.HintSize="1608,4918" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[Directory.GetFiles(PriceAuditFolder)]">
           <ui:ForEach.Body>
             <ActivityAction x:TypeArguments="x:String">
               <ActivityAction.Argument>
                 <DelegateInArgument x:TypeArguments="x:String" Name="file" />
               </ActivityAction.Argument>
-              <Sequence DisplayName="Read spreadsheet and get rows" sap:VirtualizedContainerService.HintSize="1560,4816" sap2010:WorkflowViewState.IdRef="Sequence_3">
+              <Sequence DisplayName="Read spreadsheet and get rows" sap:VirtualizedContainerService.HintSize="1576,4784" sap2010:WorkflowViewState.IdRef="Sequence_3">
                 <Sequence.Variables>
                   <Variable x:TypeArguments="x:String" Name="missingData" />
                 </Sequence.Variables>
@@ -1219,55 +1228,308 @@
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
         </ui:ForEach>
-        <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Excel Application Scope" sap:VirtualizedContainerService.HintSize="1576,1429" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_9" WorkbookPath="\\compass-usa\cgcorp\AccountingServices\Secure\Systems and Projects\Systems\SAP\Projects\UiPath\Macros\PERSONAL.xlsb">
+        <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Excel Application Scope" sap:VirtualizedContainerService.HintSize="1608,707" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_9" WorkbookPath="\\compass-usa\cgcorp\AccountingServices\Secure\Systems and Projects\Systems\SAP\Projects\UiPath\Macros\PERSONAL.xlsb">
           <ui:ExcelApplicationScope.Body>
             <ActivityAction x:TypeArguments="ui:WorkbookApplication">
               <ActivityAction.Argument>
                 <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
               </ActivityAction.Argument>
-              <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="436,1320" sap2010:WorkflowViewState.IdRef="Sequence_55">
+              <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="254,598" sap2010:WorkflowViewState.IdRef="Sequence_55">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
-                <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Excel Application Scope" sap:VirtualizedContainerService.HintSize="414,578" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_2" WorkbookPath="[ConsolidatedFile]">
+                <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Copy template header format" sap:VirtualizedContainerService.HintSize="216,51" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_10" WorkbookPath="[TemplateFile]">
                   <ui:ExcelApplicationScope.Body>
                     <ActivityAction x:TypeArguments="ui:WorkbookApplication">
                       <ActivityAction.Argument>
                         <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
                       </ActivityAction.Argument>
-                      <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="336,469" sap2010:WorkflowViewState.IdRef="Sequence_6">
+                      <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="368,586" sap2010:WorkflowViewState.IdRef="Sequence_61">
                         <sap:WorkflowViewStateService.ViewState>
                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
                             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                           </scg:Dictionary>
                         </sap:WorkflowViewStateService.ViewState>
-                        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="314,91" sap2010:WorkflowViewState.IdRef="LogMessage_13" Level="Info" Message="[&quot;Adding rows to consolidated file...&quot;]" />
-                        <ui:ExcelAppendRange DataTable="[initTemplateColumnHeaders]" DisplayName="Append Range" sap:VirtualizedContainerService.HintSize="314,87" sap2010:WorkflowViewState.IdRef="ExcelAppendRange_1" SheetName="Consolidated" />
-                        <ui:InvokeVBA OutputValue="{x:Null}" CodeFilePath="[Macros + &quot;\FormatColumnFit.bas&quot;]" DisplayName="Invoke VBA" EntryMethodName="PERSONAL.XLSB!FormatColumnFit.FormatColumnFit" sap:VirtualizedContainerService.HintSize="314,87" sap2010:WorkflowViewState.IdRef="InvokeVBA_3" />
+                        <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'A1'" sap:VirtualizedContainerService.HintSize="330,106" sap2010:WorkflowViewState.IdRef="Click_1" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="False">
+                          <ui:Click.CursorPosition>
+                            <ui:CursorPosition Position="Center">
+                              <ui:CursorPosition.OffsetX>
+                                <InArgument x:TypeArguments="x:Int32" />
+                              </ui:CursorPosition.OffsetX>
+                              <ui:CursorPosition.OffsetY>
+                                <InArgument x:TypeArguments="x:Int32" />
+                              </ui:CursorPosition.OffsetY>
+                            </ui:CursorPosition>
+                          </ui:Click.CursorPosition>
+                          <ui:Click.Target>
+                            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="983949950d05d8a8324a6ee2a7896dae" Selector="&lt;wnd app='excel.exe' cls='XLMAIN' title='*Template - Excel' /&gt;&lt;uia cls='EXCEL7' name='*Template' /&gt;&lt;uia name='Grid' /&gt;&lt;uia name='A1' /&gt;" WaitForReady="INTERACTIVE" />
+                          </ui:Click.Target>
+                        </ui:Click>
+                        <ui:SendHotkey DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Send Hotkey 'Grid'" EmptyField="False" sap:VirtualizedContainerService.HintSize="330,154" sap2010:WorkflowViewState.IdRef="SendHotkey_1" Key="right" KeyModifiers="Ctrl, Shift" SendWindowMessages="False" SpecialKey="True">
+                          <ui:SendHotkey.Target>
+                            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="5f48f0958b50a0994c7ec1dfd43c4de2" Selector="&lt;wnd app='excel.exe' cls='XLMAIN' title='*Template - Excel' /&gt;&lt;uia cls='EXCEL7' name='*Template' /&gt;&lt;uia name='Grid' /&gt;" WaitForReady="INTERACTIVE" />
+                          </ui:SendHotkey.Target>
+                        </ui:SendHotkey>
+                        <ui:SendHotkey DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Send Hotkey 'Grid'" EmptyField="False" sap:VirtualizedContainerService.HintSize="330,154" sap2010:WorkflowViewState.IdRef="SendHotkey_2" Key="c" KeyModifiers="Ctrl" SendWindowMessages="False" SpecialKey="False">
+                          <ui:SendHotkey.Target>
+                            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="5f48f0958b50a0994c7ec1dfd43c4de2" Selector="&lt;wnd app='excel.exe' cls='XLMAIN' title='*Template - Excel' /&gt;&lt;uia cls='EXCEL7' name='*Template' /&gt;&lt;uia name='Grid' /&gt;" WaitForReady="INTERACTIVE" />
+                          </ui:SendHotkey.Target>
+                        </ui:SendHotkey>
                       </Sequence>
                     </ActivityAction>
                   </ui:ExcelApplicationScope.Body>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
                 </ui:ExcelApplicationScope>
-                <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Excel Application Scope" sap:VirtualizedContainerService.HintSize="414,578" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_6" WorkbookPath="[FaultyRowsFile]">
+                <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="ConsolidatedFile Processing..." sap:VirtualizedContainerService.HintSize="216,51" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_2" WorkbookPath="[ConsolidatedFile]">
                   <ui:ExcelApplicationScope.Body>
                     <ActivityAction x:TypeArguments="ui:WorkbookApplication">
                       <ActivityAction.Argument>
                         <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
                       </ActivityAction.Argument>
-                      <Sequence sap:VirtualizedContainerService.HintSize="336,469" sap2010:WorkflowViewState.IdRef="Sequence_31">
+                      <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="368,777" sap2010:WorkflowViewState.IdRef="Sequence_6">
                         <sap:WorkflowViewStateService.ViewState>
                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
                             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                           </scg:Dictionary>
                         </sap:WorkflowViewStateService.ViewState>
-                        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="314,91" sap2010:WorkflowViewState.IdRef="LogMessage_20" Level="Info" Message="[&quot;Adding rows to faulty rows file...&quot;]" />
-                        <ui:ExcelAppendRange DataTable="[faultyRowsDT]" DisplayName="Append Range" sap:VirtualizedContainerService.HintSize="314,87" sap2010:WorkflowViewState.IdRef="ExcelAppendRange_2" SheetName="Faulty Rows" />
-                        <ui:InvokeVBA OutputValue="{x:Null}" CodeFilePath="[Macros + &quot;\FormatColumnFit.bas&quot;]" DisplayName="Invoke VBA" EntryMethodName="PERSONAL.XLSB!FormatColumnFit.FormatColumnFit" sap:VirtualizedContainerService.HintSize="314,87" sap2010:WorkflowViewState.IdRef="InvokeVBA_5" />
+                        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="330,91" sap2010:WorkflowViewState.IdRef="LogMessage_13" Level="Info" Message="[&quot;Adding rows to consolidated file...&quot;]" />
+                        <ui:ExcelAppendRange DataTable="[initTemplateColumnHeaders]" DisplayName="Append Range" sap:VirtualizedContainerService.HintSize="330,87" sap2010:WorkflowViewState.IdRef="ExcelAppendRange_1" SheetName="Consolidated" />
+                        <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'A1'" sap:VirtualizedContainerService.HintSize="330,106" sap2010:WorkflowViewState.IdRef="Click_2" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="False">
+                          <ui:Click.CursorPosition>
+                            <ui:CursorPosition Position="Center">
+                              <ui:CursorPosition.OffsetX>
+                                <InArgument x:TypeArguments="x:Int32" />
+                              </ui:CursorPosition.OffsetX>
+                              <ui:CursorPosition.OffsetY>
+                                <InArgument x:TypeArguments="x:Int32" />
+                              </ui:CursorPosition.OffsetY>
+                            </ui:CursorPosition>
+                          </ui:Click.CursorPosition>
+                          <ui:Click.Target>
+                            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="8aec140be002be2e26a4230ffc7787a8" Selector="&lt;wnd app='excel.exe' cls='XLMAIN' title='*Consolidated - Excel' /&gt;&lt;uia cls='EXCEL7' name='*Consolidated' /&gt;&lt;uia name='Grid' /&gt;&lt;uia omit:name='A1' tableCol='0' tableRow='0' /&gt;" WaitForReady="INTERACTIVE" />
+                          </ui:Click.Target>
+                        </ui:Click>
+                        <ui:SendHotkey DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Send Hotkey 'Grid'" EmptyField="False" sap:VirtualizedContainerService.HintSize="330,154" sap2010:WorkflowViewState.IdRef="SendHotkey_3" Key="right" KeyModifiers="Ctrl, Shift" SendWindowMessages="False" SpecialKey="True">
+                          <ui:SendHotkey.Target>
+                            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="cb7ff232064b94dddbfe2d1582abf537" Selector="&lt;wnd app='excel.exe' cls='XLMAIN' title='PriceAudit_Consolidated - Excel' /&gt;&lt;uia cls='EXCEL7' name='PriceAudit_Consolidated' /&gt;&lt;uia name='Grid' /&gt;" WaitForReady="INTERACTIVE" />
+                          </ui:SendHotkey.Target>
+                        </ui:SendHotkey>
+                        <ui:InvokeVBA OutputValue="{x:Null}" CodeFilePath="[Macros + &quot;\PasteFormatSheet.bas&quot;]" DisplayName="Invoke VBA" EntryMethodName="PERSONAL.XLSB!PasteFormatSheet" sap:VirtualizedContainerService.HintSize="330,87" sap2010:WorkflowViewState.IdRef="InvokeVBA_6" />
                       </Sequence>
                     </ActivityAction>
                   </ui:ExcelApplicationScope.Body>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </ui:ExcelApplicationScope>
+                <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="FaultyRows processing..." sap:VirtualizedContainerService.HintSize="216,51" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_6" WorkbookPath="[FaultyRowsFile]">
+                  <ui:ExcelApplicationScope.Body>
+                    <ActivityAction x:TypeArguments="ui:WorkbookApplication">
+                      <ActivityAction.Argument>
+                        <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
+                      </ActivityAction.Argument>
+                      <Sequence sap:VirtualizedContainerService.HintSize="368,777" sap2010:WorkflowViewState.IdRef="Sequence_31">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="330,91" sap2010:WorkflowViewState.IdRef="LogMessage_20" Level="Info" Message="[&quot;Adding rows to faulty rows file...&quot;]" />
+                        <ui:ExcelAppendRange DataTable="[faultyRowsDT]" DisplayName="Append Range" sap:VirtualizedContainerService.HintSize="330,87" sap2010:WorkflowViewState.IdRef="ExcelAppendRange_2" SheetName="Faulty Rows" />
+                        <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'A1'" sap:VirtualizedContainerService.HintSize="330,106" sap2010:WorkflowViewState.IdRef="Click_5" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="False">
+                          <ui:Click.CursorPosition>
+                            <ui:CursorPosition Position="Center">
+                              <ui:CursorPosition.OffsetX>
+                                <InArgument x:TypeArguments="x:Int32" />
+                              </ui:CursorPosition.OffsetX>
+                              <ui:CursorPosition.OffsetY>
+                                <InArgument x:TypeArguments="x:Int32" />
+                              </ui:CursorPosition.OffsetY>
+                            </ui:CursorPosition>
+                          </ui:Click.CursorPosition>
+                          <ui:Click.Target>
+                            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="8aec140be002be2e26a4230ffc7787a8" Selector="&lt;wnd app='excel.exe' cls='XLMAIN' title='FaultyRows - Excel' /&gt;&lt;uia cls='EXCEL7' name='FaultyRows' /&gt;&lt;uia name='Grid' /&gt;&lt;uia name='A1' tableCol='0' tableRow='0' /&gt;" WaitForReady="INTERACTIVE" />
+                          </ui:Click.Target>
+                        </ui:Click>
+                        <ui:SendHotkey DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Send Hotkey 'Grid'" EmptyField="False" sap:VirtualizedContainerService.HintSize="330,154" sap2010:WorkflowViewState.IdRef="SendHotkey_9" Key="right" KeyModifiers="Ctrl, Shift" SendWindowMessages="False" SpecialKey="True">
+                          <ui:SendHotkey.Target>
+                            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="cb7ff232064b94dddbfe2d1582abf537" Selector="&lt;wnd app='excel.exe' cls='XLMAIN' title='FaultyRows - Excel' /&gt;&lt;uia cls='EXCEL7' name='FaultyRows' /&gt;&lt;uia name='Grid' /&gt;" WaitForReady="INTERACTIVE" />
+                          </ui:SendHotkey.Target>
+                        </ui:SendHotkey>
+                        <ui:InvokeVBA OutputValue="{x:Null}" CodeFilePath="[Macros + &quot;\PasteFormatSheet.bas&quot;]" DisplayName="Invoke VBA" EntryMethodName="PERSONAL.XLSB!PasteFormatSheet" sap:VirtualizedContainerService.HintSize="330,87" sap2010:WorkflowViewState.IdRef="InvokeVBA_9" />
+                      </Sequence>
+                    </ActivityAction>
+                  </ui:ExcelApplicationScope.Body>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </ui:ExcelApplicationScope>
+                <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Copy template table format" sap:VirtualizedContainerService.HintSize="216,51" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_11" WorkbookPath="[TemplateFile]">
+                  <ui:ExcelApplicationScope.Body>
+                    <ActivityAction x:TypeArguments="ui:WorkbookApplication">
+                      <ActivityAction.Argument>
+                        <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
+                      </ActivityAction.Argument>
+                      <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="368,780" sap2010:WorkflowViewState.IdRef="Sequence_62">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'A2'" sap:VirtualizedContainerService.HintSize="330,106" sap2010:WorkflowViewState.IdRef="Click_3" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="False">
+                          <ui:Click.CursorPosition>
+                            <ui:CursorPosition Position="Center">
+                              <ui:CursorPosition.OffsetX>
+                                <InArgument x:TypeArguments="x:Int32" />
+                              </ui:CursorPosition.OffsetX>
+                              <ui:CursorPosition.OffsetY>
+                                <InArgument x:TypeArguments="x:Int32" />
+                              </ui:CursorPosition.OffsetY>
+                            </ui:CursorPosition>
+                          </ui:Click.CursorPosition>
+                          <ui:Click.Target>
+                            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="89363961f8ec2a56a7e4544fd0e8de8e" Selector="&lt;wnd app='excel.exe' cls='XLMAIN' title='*Template - Excel' /&gt;&lt;uia cls='EXCEL7' name='*Template' /&gt;&lt;uia name='Grid' /&gt;&lt;uia name='A2' tableCol='0' tableRow='0' /&gt;" WaitForReady="INTERACTIVE" />
+                          </ui:Click.Target>
+                        </ui:Click>
+                        <ui:SendHotkey DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Send Hotkey 'Grid'" EmptyField="False" sap:VirtualizedContainerService.HintSize="330,154" sap2010:WorkflowViewState.IdRef="SendHotkey_4" Key="right" KeyModifiers="Ctrl, Shift" SendWindowMessages="False" SpecialKey="True">
+                          <ui:SendHotkey.Target>
+                            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="5f48f0958b50a0994c7ec1dfd43c4de2" Selector="&lt;wnd app='excel.exe' cls='XLMAIN' title='*Template - Excel' /&gt;&lt;uia cls='EXCEL7' name='*Template' /&gt;&lt;uia name='Grid' /&gt;" WaitForReady="INTERACTIVE" />
+                          </ui:SendHotkey.Target>
+                        </ui:SendHotkey>
+                        <ui:SendHotkey DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Send Hotkey 'Grid'" EmptyField="False" sap:VirtualizedContainerService.HintSize="330,154" sap2010:WorkflowViewState.IdRef="SendHotkey_5" Key="down" KeyModifiers="Ctrl, Shift" SendWindowMessages="False" SpecialKey="True">
+                          <ui:SendHotkey.Target>
+                            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="5f48f0958b50a0994c7ec1dfd43c4de2" Selector="&lt;wnd app='excel.exe' cls='XLMAIN' title='*Template - Excel' /&gt;&lt;uia cls='EXCEL7' name='*Template' /&gt;&lt;uia name='Grid' /&gt;" WaitForReady="INTERACTIVE" />
+                          </ui:SendHotkey.Target>
+                        </ui:SendHotkey>
+                        <ui:SendHotkey DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Send Hotkey 'Grid'" EmptyField="False" sap:VirtualizedContainerService.HintSize="330,154" sap2010:WorkflowViewState.IdRef="SendHotkey_6" Key="c" KeyModifiers="Ctrl" SendWindowMessages="False" SpecialKey="False">
+                          <ui:SendHotkey.Target>
+                            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="5f48f0958b50a0994c7ec1dfd43c4de2" Selector="&lt;wnd app='excel.exe' cls='XLMAIN' title='*Template - Excel' /&gt;&lt;uia cls='EXCEL7' name='*Template' /&gt;&lt;uia name='Grid' /&gt;" WaitForReady="INTERACTIVE" />
+                          </ui:SendHotkey.Target>
+                        </ui:SendHotkey>
+                      </Sequence>
+                    </ActivityAction>
+                  </ui:ExcelApplicationScope.Body>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </ui:ExcelApplicationScope>
+                <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="ConsolidatedFile Processing..." sap:VirtualizedContainerService.HintSize="216,51" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_12" WorkbookPath="[ConsolidatedFile]">
+                  <ui:ExcelApplicationScope.Body>
+                    <ActivityAction x:TypeArguments="ui:WorkbookApplication">
+                      <ActivityAction.Argument>
+                        <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
+                      </ActivityAction.Argument>
+                      <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="368,1098" sap2010:WorkflowViewState.IdRef="Sequence_63">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="330,91" sap2010:WorkflowViewState.IdRef="LogMessage_22" Level="Info" Message="[&quot;Adding rows to consolidated file...&quot;]" />
+                        <ui:ExcelAppendRange DataTable="[initTemplateColumnHeaders]" DisplayName="Append Range" sap:VirtualizedContainerService.HintSize="330,87" sap2010:WorkflowViewState.IdRef="ExcelAppendRange_3" SheetName="Consolidated" />
+                        <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'A2'" sap:VirtualizedContainerService.HintSize="330,106" sap2010:WorkflowViewState.IdRef="Click_4" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="False">
+                          <ui:Click.CursorPosition>
+                            <ui:CursorPosition Position="Center">
+                              <ui:CursorPosition.OffsetX>
+                                <InArgument x:TypeArguments="x:Int32" />
+                              </ui:CursorPosition.OffsetX>
+                              <ui:CursorPosition.OffsetY>
+                                <InArgument x:TypeArguments="x:Int32" />
+                              </ui:CursorPosition.OffsetY>
+                            </ui:CursorPosition>
+                          </ui:Click.CursorPosition>
+                          <ui:Click.Target>
+                            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="8aec140be002be2e26a4230ffc7787a8" Selector="&lt;wnd app='excel.exe' cls='XLMAIN' title='*Consolidated - Excel' /&gt;&lt;uia cls='EXCEL7' name='*Consolidated' /&gt;&lt;uia name='Grid' /&gt;&lt;uia omit:name='A2' tableCol='0' tableRow='1' /&gt;" WaitForReady="INTERACTIVE" />
+                          </ui:Click.Target>
+                        </ui:Click>
+                        <ui:SendHotkey DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Send Hotkey 'Grid'" EmptyField="False" sap:VirtualizedContainerService.HintSize="330,154" sap2010:WorkflowViewState.IdRef="SendHotkey_7" Key="right" KeyModifiers="Ctrl, Shift" SendWindowMessages="False" SpecialKey="True">
+                          <ui:SendHotkey.Target>
+                            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="cb7ff232064b94dddbfe2d1582abf537" Selector="&lt;wnd app='excel.exe' cls='XLMAIN' title='PriceAudit_Consolidated - Excel' /&gt;&lt;uia cls='EXCEL7' name='PriceAudit_Consolidated' /&gt;&lt;uia name='Grid' /&gt;" WaitForReady="INTERACTIVE" />
+                          </ui:SendHotkey.Target>
+                        </ui:SendHotkey>
+                        <ui:SendHotkey DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Send Hotkey 'Grid'" EmptyField="False" sap:VirtualizedContainerService.HintSize="330,154" sap2010:WorkflowViewState.IdRef="SendHotkey_8" Key="down" KeyModifiers="Ctrl, Shift" SendWindowMessages="False" SpecialKey="True">
+                          <ui:SendHotkey.Target>
+                            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="cb7ff232064b94dddbfe2d1582abf537" Selector="&lt;wnd app='excel.exe' cls='XLMAIN' title='PriceAudit_Consolidated - Excel' /&gt;&lt;uia cls='EXCEL7' name='PriceAudit_Consolidated' /&gt;&lt;uia name='Grid' /&gt;" WaitForReady="INTERACTIVE" />
+                          </ui:SendHotkey.Target>
+                        </ui:SendHotkey>
+                        <ui:InvokeVBA OutputValue="{x:Null}" CodeFilePath="[Macros + &quot;\PasteFormatSheet.bas&quot;]" DisplayName="Invoke VBA" EntryMethodName="PERSONAL.XLSB!PasteFormatSheet" sap:VirtualizedContainerService.HintSize="330,87" sap2010:WorkflowViewState.IdRef="InvokeVBA_7" />
+                        <ui:InvokeVBA OutputValue="{x:Null}" CodeFilePath="[Macros + &quot;\FormatColumnFit.bas&quot;]" DisplayName="Invoke VBA" EntryMethodName="PERSONAL.XLSB!FormatColumnFit.FormatColumnFit" sap:VirtualizedContainerService.HintSize="330,87" sap2010:WorkflowViewState.IdRef="InvokeVBA_8" />
+                      </Sequence>
+                    </ActivityAction>
+                  </ui:ExcelApplicationScope.Body>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </ui:ExcelApplicationScope>
+                <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="FaultyRows processing..." sap:VirtualizedContainerService.HintSize="216,51" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_13" WorkbookPath="[FaultyRowsFile]">
+                  <ui:ExcelApplicationScope.Body>
+                    <ActivityAction x:TypeArguments="ui:WorkbookApplication">
+                      <ActivityAction.Argument>
+                        <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
+                      </ActivityAction.Argument>
+                      <Sequence sap:VirtualizedContainerService.HintSize="368,1098" sap2010:WorkflowViewState.IdRef="Sequence_64">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="330,91" sap2010:WorkflowViewState.IdRef="LogMessage_23" Level="Info" Message="[&quot;Adding rows to faulty rows file...&quot;]" />
+                        <ui:ExcelAppendRange DataTable="[faultyRowsDT]" DisplayName="Append Range" sap:VirtualizedContainerService.HintSize="330,87" sap2010:WorkflowViewState.IdRef="ExcelAppendRange_4" SheetName="Faulty Rows" />
+                        <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'EXCEL7'" sap:VirtualizedContainerService.HintSize="330,106" sap2010:WorkflowViewState.IdRef="Click_6" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="False">
+                          <ui:Click.CursorPosition>
+                            <ui:CursorPosition Position="Center">
+                              <ui:CursorPosition.OffsetX>
+                                <InArgument x:TypeArguments="x:Int32" />
+                              </ui:CursorPosition.OffsetX>
+                              <ui:CursorPosition.OffsetY>
+                                <InArgument x:TypeArguments="x:Int32" />
+                              </ui:CursorPosition.OffsetY>
+                            </ui:CursorPosition>
+                          </ui:Click.CursorPosition>
+                          <ui:Click.Target>
+                            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="b7ca16559419ef7e191439f1cd0d10b2" Selector="&lt;wnd app='excel.exe' cls='XLMAIN' title='FaultyRows - Excel' /&gt;&lt;uia cls='EXCEL7' name='FaultyRows' /&gt;&lt;uia name='Grid' /&gt;&lt;uia name='A2' tableCol='0' tableRow='1' /&gt;" WaitForReady="INTERACTIVE" />
+                          </ui:Click.Target>
+                        </ui:Click>
+                        <ui:SendHotkey DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Send Hotkey 'Grid'" EmptyField="False" sap:VirtualizedContainerService.HintSize="330,154" sap2010:WorkflowViewState.IdRef="SendHotkey_10" Key="right" KeyModifiers="Ctrl, Shift" SendWindowMessages="False" SpecialKey="True">
+                          <ui:SendHotkey.Target>
+                            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="cb7ff232064b94dddbfe2d1582abf537" Selector="&lt;wnd app='excel.exe' cls='XLMAIN' title='FaultyRows - Excel' /&gt;&lt;uia cls='EXCEL7' name='FaultyRows' /&gt;&lt;uia name='Grid' /&gt;" WaitForReady="INTERACTIVE" />
+                          </ui:SendHotkey.Target>
+                        </ui:SendHotkey>
+                        <ui:SendHotkey DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Send Hotkey 'Grid'" EmptyField="False" sap:VirtualizedContainerService.HintSize="330,154" sap2010:WorkflowViewState.IdRef="SendHotkey_11" Key="down" KeyModifiers="Ctrl, Shift" SendWindowMessages="False" SpecialKey="True">
+                          <ui:SendHotkey.Target>
+                            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="cb7ff232064b94dddbfe2d1582abf537" Selector="&lt;wnd app='excel.exe' cls='XLMAIN' title='FaultyRows - Excel' /&gt;&lt;uia cls='EXCEL7' name='FaultyRows' /&gt;&lt;uia name='Grid' /&gt;" WaitForReady="INTERACTIVE" />
+                          </ui:SendHotkey.Target>
+                        </ui:SendHotkey>
+                        <ui:InvokeVBA OutputValue="{x:Null}" CodeFilePath="[Macros + &quot;\PasteFormatSheet.bas&quot;]" DisplayName="Invoke VBA" EntryMethodName="PERSONAL.XLSB!PasteFormatSheet" sap:VirtualizedContainerService.HintSize="330,87" sap2010:WorkflowViewState.IdRef="InvokeVBA_10" />
+                        <ui:InvokeVBA OutputValue="{x:Null}" CodeFilePath="[Macros + &quot;\FormatColumnFit.bas&quot;]" DisplayName="Invoke VBA" EntryMethodName="PERSONAL.XLSB!FormatColumnFit.FormatColumnFit" sap:VirtualizedContainerService.HintSize="330,87" sap2010:WorkflowViewState.IdRef="InvokeVBA_11" />
+                      </Sequence>
+                    </ActivityAction>
+                  </ui:ExcelApplicationScope.Body>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
                 </ui:ExcelApplicationScope>
               </Sequence>
             </ActivityAction>
@@ -1279,11 +1541,11 @@
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <av:Point x:Key="ShapeLocation">120,6</av:Point>
-          <av:Size x:Key="ShapeSize">200,393</av:Size>
-          <av:PointCollection x:Key="ConnectorLocation">320,202.5 350,202.5 350,150 370,150</av:PointCollection>
+          <av:Size x:Key="ShapeSize">216,408</av:Size>
+          <av:PointCollection x:Key="ConnectorLocation">336,210 366,210 366,157.5 370,157.5</av:PointCollection>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <Sequence sap2010:Annotation.AnnotationText="Reads Config.xlsx for assets pulled from Orchestrator.&#xA;&#xA;For this specific process, the assets that will be read are:&#xA;&#xA;- ClientPayFolder: the folder where the files to be processed are located and the file where the resulting Excel spreadsheet will be placed.&#xA;&#xA;- ProcessedFolder: the folder where the files that have been processed will be placed.&#xA;&#xA;NOTE: If the file path where the files are located have changed, please contact a UiPath Orchestrator user to change these within Orchestrator." DisplayName="Read Config file" sap:VirtualizedContainerService.HintSize="200,393" sap2010:WorkflowViewState.IdRef="Sequence_2">
+      <Sequence sap2010:Annotation.AnnotationText="Reads Config.xlsx for assets pulled from Orchestrator.&#xA;&#xA;For this specific process, the assets that will be read are:&#xA;&#xA;- ClientPayFolder: the folder where the files to be processed are located and the file where the resulting Excel spreadsheet will be placed.&#xA;&#xA;- ProcessedFolder: the folder where the files that have been processed will be placed.&#xA;&#xA;NOTE: If the file path where the files are located have changed, please contact a UiPath Orchestrator user to change these within Orchestrator." DisplayName="Read Config file" sap:VirtualizedContainerService.HintSize="216,408" sap2010:WorkflowViewState.IdRef="Sequence_2">
         <Sequence.Variables>
           <Variable x:TypeArguments="sd:DataTable" Name="assets" />
         </Sequence.Variables>
